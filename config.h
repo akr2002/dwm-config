@@ -62,6 +62,9 @@ static const char *edge[] = { "/usr/bin/microsoft-edge-dev", NULL };
 static const char *ss_region[] = { "/usr/bin/xfce4-screenshooter", "-r", NULL };
 static const char *ss_normal[] = { "/usr/bin/xfce4-screenshooter", NULL };
 
+/* launch synapse */
+static const char *synapse[] = { "/usr/bin/synapse", NULL };
+
 /* layouts */
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -89,7 +92,7 @@ static const char *termcmd[]  = { "kitty", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ Mod4Mask,			XK_s,	   spawn,	   {.v = dmenucmd } },
+	{ Mod4Mask,			XK_s,	   spawn,	   {.v = synapse } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ Mod4Mask,			XK_Return, spawn,	   {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
