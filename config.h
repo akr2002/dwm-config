@@ -65,6 +65,15 @@ static const char *ss_normal[] = { "/usr/bin/xfce4-screenshooter", NULL };
 /* launch synapse */
 static const char *synapse[] = { "/usr/bin/synapse", NULL };
 
+/* suspend and lock */
+static const char *away[] = { "/usr/bin/away", NULL };
+
+/* lock */
+static const char *lock[] = { "/usr/bin/lock", NULL };
+
+/* logout */
+static const char *logout[] = { "/usr/bin/logout", NULL };
+
 /* layouts */
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -139,7 +148,9 @@ static Key keys[] = {
 	{ Mod4Mask,			XK_b, spawn, { .v = edge } },
 	{ Mod4Mask|ShiftMask,		XK_s, spawn, { .v = ss_region } },
 	{ 0,				XK_Print, spawn, { .v = ss_normal } },
-
+	{ Mod4Mask,			XK_l, spawn, { .v = lock } },
+	{ Mod4Mask|ShiftMask,		XK_l, spawn, { .v = logout } },
+	{ Mod4Mask,			XK_x, spawn, { .v = away } },
 };
 
 /* button definitions */
