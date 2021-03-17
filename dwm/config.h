@@ -60,7 +60,11 @@ static const char *edge[] = { "/usr/bin/microsoft-edge-dev", NULL };
 
 /* take screenshot with xfce4-screenshooter */
 static const char *ss_region[] = { "/usr/bin/xfce4-screenshooter", "-r", NULL };
-static const char *ss_normal[] = { "/usr/bin/xfce4-screenshooter", NULL };
+/*static const char *ss_normal[] = { "/usr/bin/xfce4-screenshooter", NULL };*/
+
+/* take screenshot with scrot */
+static const char *ss_normal[] = { "/usr/bin/scrot", "-z", "-e", "mv $f $~/Pictures/Screenshots/", NULL };
+static const char *ss_window[] = { "/usr/bin/scrot", "-z", "-s", "-e", "mv $f $~/Pictures/Screenshots/", NULL };
 
 /* launch synapse */
 static const char *synapse[] = { "/usr/bin/synapse", NULL };
@@ -147,6 +151,7 @@ static Key keys[] = {
 	{ Mod4Mask,			XK_e,	spawn, {.v = thunar } },
 	{ Mod4Mask,			XK_b, spawn, { .v = edge } },
 	{ Mod4Mask|ShiftMask,		XK_s, spawn, { .v = ss_region } },
+	{ MODKEY,			XK_Print, spawn, { .v = ss_window } },
 	{ 0,				XK_Print, spawn, { .v = ss_normal } },
 	{ Mod4Mask,			XK_l, spawn, { .v = lock } },
 	{ Mod4Mask|ShiftMask,		XK_l, spawn, { .v = logout } },
