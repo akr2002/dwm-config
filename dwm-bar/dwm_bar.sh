@@ -15,7 +15,7 @@ DIR=$(dirname "$LOC")
 
 # Change the appearance of the module identifier. if this is set to "unicode", then symbols will be used as identifiers instead of text. E.g. [📪 0] instead of [MAIL 0].
 # Requires a font with adequate unicode character support
-export IDENTIFIER="unicode"
+#export IDENTIFIER="unicode"
 
 # Change the charachter(s) used to seperate modules. If two are used, they will be placed at the start and end.
 export SEP1="["
@@ -64,7 +64,7 @@ do
 #    dispstr="$dispstr$(dwm_countdown)"
 #    dispstr="$dispstr$(dwm_alarm)"
 #    dispstr="$dispstr$(dwm_transmission)"
-#    dispstr="$dispstr$(dwm_cmus)"
+    dispstr="$dispstr$(dwm_cmus)"
 #    dispstr="$dispstr$(dwm_mpc)"
 #    dispstr="$dispstr$(dwm_spotify)"
     dispstr="$dispstr$(dwm_resources)"
@@ -75,11 +75,11 @@ do
 #    dispstr="$dispstr$(dwm_pulse)"
 #    dispstr="$dispstr${__DWM_BAR_WEATHER__}"
 #    dispstr="$dispstr$(dwm_vpn)"
-#    dispstr="$dispstr${__DWM_BAR_NETWORKMANAGER__}"
+    dispstr="$dispstr${__DWM_BAR_NETWORKMANAGER__}"
 #    dispstr="$dispstr$(dwm_keyboard)"
 #    dispstr="$dispstr$(dwm_ccurse)"
     dispstr="$dispstr$(dwm_date)"
-    dispstr="$dispstr$(dwm_loadavg)"
+#    dispstr="$dispstr$(dwm_loadavg)"
     #dispstr="$dispstr$(dwm_currency)"
 
     xsetroot -name "$dispstr"

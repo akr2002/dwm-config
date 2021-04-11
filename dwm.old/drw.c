@@ -21,8 +21,8 @@ utf8decodebyte(const char c, size_t *i)
 {
 	for (*i = 0; *i < (UTF_SIZ + 1); ++(*i))
 		if (((unsigned char)c & utfmask[*i]) == utfbyte[*i])
-			/*return (unsigned char)c;*/
 			return (unsigned char)c & ~utfmask[*i];
+			/*return (unsigned char)c;*/
 	return 0;
 }
 
@@ -96,6 +96,7 @@ drw_free(Drw *drw)
 {
 	XFreePixmap(drw->dpy, drw->drawable);
 	XFreeGC(drw->dpy, drw->gc);
+	drw_fontset_free(drw->fonts);
 	free(drw);
 }
 
@@ -140,11 +141,11 @@ xfont_create(Drw *drw, const char *fontname, FcPattern *fontpattern)
 	 * https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=916349
 	 * and lots more all over the internet.
 	 */
-	FcBool iscol;
+	/*FcBool iscol;
 	if(FcPatternGetBool(xfont->pattern, FC_COLOR, 0, &iscol) == FcResultMatch && iscol) {
 		XftFontClose(drw->dpy, xfont);
 		return NULL;
-	}
+	}*/
 
 	font = ecalloc(1, sizeof(Fnt));
 	font->xfont = xfont;
@@ -208,7 +209,7 @@ drw_clr_create(Drw *drw, Clr *dest, const char *clrname)
 /* Wrapper to create color schemes. The caller has to call free(3) on the
  * returned color scheme when done using it. */
 Clr *
-drw_scm_create(Drw *drw, char *clrnames[], size_t clrcount)
+drw_scm_create(Drw *drw, const char *clrnames[], size_t clrcount)
 {
 	size_t i;
 	Clr *ret;
@@ -234,26 +235,6 @@ drw_setscheme(Drw *drw, Clr *scm)
 {
 	if (drw)
 		drw->scheme = scm;
-}
-
-void
-drw_polygon(Drw *drw, int x, int y, int ow, int oh, int sw, int sh, const XPoint *points, int npoints, int shape, int filled) /* wrapper function to scale and draw a polygon with X11 */
-{
-	if (!drw || !drw->scheme)
-		return;
-	XSetForeground(drw->dpy, drw->gc, drw->scheme[ColFg].pixel);
-	if (!filled) { /* reduces the scaled width and height by 1 when drawing the outline to compensate for X11 drawing the line 1 pixel over */
-		sw -= 1;
-		sh -= 1;
-	}
-	XPoint scaledpoints[npoints];
-	memcpy(scaledpoints, points, npoints);
-	for (int v = 0; v < npoints; v++)
-		scaledpoints[v] = (XPoint){ .x = points[v].x * sw / ow + x, .y = points[v].y * sh / oh + y };
-	if (filled)
-		XFillPolygon(drw->dpy, drw->drawable, drw->gc, scaledpoints, npoints, shape, CoordModeOrigin);
-	else
-		XDrawLines(drw->dpy, drw->drawable, drw->gc, scaledpoints, npoints, CoordModeOrigin);
 }
 
 void
