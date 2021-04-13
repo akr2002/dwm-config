@@ -1,3 +1,7 @@
+I stumbled upon this work by github.com/qwertycoder and modified it for my use.    
+Find their repo at github.com/qwertycoder/dwm
+
+
 # QWERTY's dwm build
 [dwm](https://dwm.suckless.org) is an extremely fast, small, and dynamic window manager for X.
 
