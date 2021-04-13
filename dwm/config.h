@@ -130,8 +130,8 @@ static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-1%"
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute", "0", "toggle", NULL };
 
 /* backlight */
-static const char *brightnessup[]   = { "sudo", "xbacklight", "-inc", "5", NULL };
-static const char *brightnessdown[] = { "sudo", "xbacklight", "-dec", "5", NULL };
+static const char *brightnessup[]   = { "sudo", "xbacklight", "-inc", "2", NULL };
+static const char *brightnessdown[] = { "sudo", "xbacklight", "-dec", "2", NULL };
 
 /* media keys (audacious) */
 /*static const char *toggle[] = { "/usr/bin/audacious", "-t", NULL };
